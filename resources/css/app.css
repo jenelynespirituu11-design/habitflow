@@ -1,0 +1,464 @@
+/* ═══════════════════════════════════════════════════════════════════════════════
+   Espiritu Habit Tracker — Global Design System
+   Served from public/css/app.css (no build step required)
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+/* ── Design tokens ─────────────────────────────────────────────────────────── */
+:root {
+    /* Brand palette (spec) */
+    --primary-pink:  #FFB6D9;
+    --dark-pink:     #FF8FB3;
+    --light-pink:    #FFE5F0;
+    --pale-pink:     #FFD6E8;
+
+    /* Semantic */
+    --success: #6BCB77;
+    --danger:  #FF6B6B;
+    --warning: #FFA500;
+    --info:    #FFB6D9;
+
+    /* Text */
+    --text-dark:  #4A4A4A;
+    --text-mid:   #6B5B6B;
+    --text-light: #9B8A9B;
+    --text-muted: #B8A8B8;
+
+    /* Backgrounds */
+    --bg-white: #FFFFFF;
+    --bg-page:  #FFF9FB;
+
+    /* Borders & shadows */
+    --border-color: #FFD6E8;
+    --shadow-card:  0 2px 8px rgba(255,182,217,0.12);
+    --shadow-hover: 0 8px 24px rgba(255,182,217,0.28);
+    --shadow-modal: 0 20px 60px rgba(45,31,45,0.22);
+
+    /* Radii */
+    --radius-sm: 8px;
+    --radius:    12px;
+    --radius-lg: 18px;
+
+    /* Transitions */
+    --transition: 0.25s ease;
+    --transition-fast: 0.15s ease;
+}
+
+/* ── Base resets ───────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+    background: var(--bg-page);
+    color: var(--text-dark);
+    font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ── Page fade-in ──────────────────────────────────────────────────────────── */
+@keyframes pageFadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: none; }
+}
+.page-body { animation: pageFadeIn 0.35s ease forwards; }
+
+/* ── Cards ─────────────────────────────────────────────────────────────────── */
+.card {
+    background: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-card);
+    padding: 20px;
+    transition: box-shadow var(--transition), transform var(--transition);
+}
+.card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+}
+
+/* ── Buttons ───────────────────────────────────────────────────────────────── */
+
+/* Primary */
+.btn-primary-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 22px;
+    background: var(--primary-pink);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+    box-shadow: 0 3px 10px rgba(255,182,217,0.4);
+}
+.btn-primary-pill:hover  { background: var(--dark-pink); transform: translateY(-1px); box-shadow: 0 5px 16px rgba(255,143,179,0.45); }
+.btn-primary-pill:active { background: #FF6B9B; transform: none; }
+
+/* Secondary */
+.btn-secondary-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 22px;
+    background: transparent;
+    color: var(--primary-pink);
+    border: 1.5px solid var(--pale-pink);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+.btn-secondary-pill:hover  { background: var(--light-pink); border-color: var(--primary-pink); transform: translateY(-1px); }
+.btn-secondary-pill:active { transform: none; }
+
+/* Danger */
+.btn-danger-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 22px;
+    background: var(--danger);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+}
+.btn-danger-pill:hover  { background: #E55555; transform: translateY(-1px); }
+.btn-danger-pill:active { transform: none; }
+
+/* ── Form inputs ───────────────────────────────────────────────────────────── */
+.input-field {
+    width: 100%;
+    padding: 10px 13px;
+    font-size: 14px;
+    color: var(--text-dark);
+    background: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    outline: none;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    font-family: inherit;
+}
+.input-field:focus {
+    border-color: var(--primary-pink);
+    box-shadow: 0 0 0 0.2rem rgba(255,182,217,0.25);
+}
+.input-field.is-invalid {
+    border-color: var(--danger);
+    box-shadow: 0 0 0 0.2rem rgba(255,107,107,0.15);
+}
+
+.form-label-std {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+}
+
+.field-error-msg {
+    font-size: 12px;
+    color: var(--danger);
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* ── Progress bars ─────────────────────────────────────────────────────────── */
+.progress-bar-wrap {
+    height: 8px;
+    background: var(--light-pink);
+    border-radius: 4px;
+    overflow: hidden;
+}
+.progress-bar-fill {
+    height: 100%;
+    background: var(--primary-pink);
+    border-radius: 4px;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Badges ────────────────────────────────────────────────────────────────── */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+.badge-success { background: var(--success); color: #fff; }
+.badge-danger  { background: var(--danger);  color: #fff; }
+.badge-warning { background: var(--warning); color: #fff; }
+.badge-info    { background: var(--info);    color: #fff; }
+.badge-pink    { background: var(--light-pink); color: var(--dark-pink); }
+.badge-green   { background: #E8F9EE; color: #3A9E6F; }
+.badge-amber   { background: #FFF5E0; color: #B8861C; }
+.badge-blue    { background: #EEF0FF; color: #5B67E8; }
+
+/* ── Tables ────────────────────────────────────────────────────────────────── */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+.data-table thead tr {
+    background: var(--light-pink);
+}
+.data-table th {
+    padding: 12px 16px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-mid);
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+.data-table td {
+    padding: 12px 16px;
+    color: var(--text-dark);
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tbody tr:hover td { background: #FFF5F8; }
+
+/* ── Modal overlay & dialog ─────────────────────────────────────────────────── */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(45, 31, 45, 0.5);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(2px);
+}
+.modal-overlay.open { display: flex; }
+
+.modal-box {
+    background: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 560px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-modal);
+    animation: modalSlideIn 0.28s cubic-bezier(0.34, 1.2, 0.64, 1) forwards;
+}
+@keyframes modalSlideIn {
+    from { opacity: 0; transform: scale(0.94) translateY(14px); }
+    to   { opacity: 1; transform: scale(1)   translateY(0); }
+}
+
+.modal-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 22px;
+    background: var(--light-pink);
+    border-bottom: 1px solid var(--border-color);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+.modal-header-bar .modal-title-text {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.modal-header-bar .modal-title-text i { color: var(--dark-pink); font-size: 20px; }
+
+.modal-close-btn {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: rgba(255,255,255,0.7);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-mid);
+    font-size: 17px;
+    transition: background var(--transition-fast), color var(--transition-fast);
+}
+.modal-close-btn:hover { background: var(--bg-white); color: var(--danger); }
+
+/* ── Toast notifications ────────────────────────────────────────────────────── */
+.toast-stack {
+    position: fixed;
+    top: 16px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.toast-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    min-width: 260px;
+    max-width: 360px;
+    pointer-events: all;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.15);
+    animation: toastSlideIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+@keyframes toastSlideIn {
+    from { opacity: 0; transform: translateX(50px) scale(0.9); }
+    to   { opacity: 1; transform: none; }
+}
+@keyframes toastSlideOut {
+    from { opacity: 1; transform: none;                          max-height: 80px; }
+    to   { opacity: 0; transform: translateX(50px) scale(0.9);  max-height: 0; padding: 0; margin: 0; }
+}
+.toast-item.leaving {
+    animation: toastSlideOut 0.28s ease forwards;
+}
+
+.toast-item.toast-success { background: linear-gradient(135deg, #4EB076, #3A9E6F); }
+.toast-item.toast-error   { background: linear-gradient(135deg, #FF6B6B, #E55555); }
+.toast-item.toast-warning { background: linear-gradient(135deg, #FFA500, #E59400); }
+.toast-item.toast-info    { background: linear-gradient(135deg, var(--primary-pink), var(--dark-pink)); }
+.toast-item i { font-size: 20px; flex-shrink: 0; }
+.toast-close-btn {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.8);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+.toast-close-btn:hover { color: #fff; }
+
+/* ── Habit card enhancements ────────────────────────────────────────────────── */
+.habit-card {
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+.habit-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Log button AJAX states */
+.btn-log {
+    position: relative;
+    overflow: hidden;
+    transition: all var(--transition-fast) !important;
+}
+.btn-log::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0);
+    transition: background 0.15s;
+}
+.btn-log:active::after { background: rgba(255,255,255,0.2); }
+.btn-log.loading { opacity: 0.7; pointer-events: none; }
+.btn-log.logging-spinner::before {
+    content: '';
+    display: inline-block;
+    width: 13px; height: 13px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Logged animation */
+@keyframes loggedPop {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.06); }
+    100% { transform: scale(1); }
+}
+.btn-log.just-logged { animation: loggedPop 0.4s ease; }
+
+/* ── Filter bar enhancements ────────────────────────────────────────────────── */
+.filter-select {
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.filter-select:focus {
+    box-shadow: 0 0 0 3px rgba(255,182,217,0.2);
+}
+
+/* ── Stat cards (dashboard & profile) ──────────────────────────────────────── */
+.stat-card {
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* ── Chart container ─────────────────────────────────────────────────────────── */
+@keyframes chartFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+.chart-canvas-wrap { animation: chartFadeIn 0.5s ease 0.2s both; }
+
+/* ── Input focus ring ────────────────────────────────────────────────────────── */
+.form-control:focus,
+.form-control:focus-visible {
+    border-color: var(--primary-pink) !important;
+    box-shadow: 0 0 0 0.2rem rgba(255,182,217,0.25) !important;
+    outline: none;
+}
+
+/* ── Skeleton loader ─────────────────────────────────────────────────────────── */
+@keyframes shimmer {
+    0%   { background-position: -400px 0; }
+    100% { background-position: 400px 0; }
+}
+.skeleton {
+    background: linear-gradient(90deg, var(--light-pink) 25%, var(--pale-pink) 50%, var(--light-pink) 75%);
+    background-size: 800px 100%;
+    animation: shimmer 1.4s infinite linear;
+    border-radius: 6px;
+}
+
+/* ── Responsive helpers ──────────────────────────────────────────────────────── */
+@media (max-width: 576px) {
+    .modal-overlay { padding: 0; align-items: flex-end; }
+    .modal-box, .modal { border-radius: var(--radius-lg) var(--radius-lg) 0 0 !important; max-height: 95vh; }
+    .btn-primary-pill,
+    .btn-secondary-pill,
+    .btn-danger-pill { min-height: 44px; }
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--light-pink); }
+::-webkit-scrollbar-thumb { background: var(--pale-pink); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary-pink); }
