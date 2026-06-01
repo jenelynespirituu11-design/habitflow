@@ -5,6 +5,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>HabitFlow</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/HabitTrack.png') }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -67,17 +68,12 @@
             padding: 0.75rem 0;
         }
         .navbar-brand {
-            color: var(--pink-500) !important;
-            font-weight: 700;
-            font-size: 1.35rem;
-            letter-spacing: -0.02em;
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 6px;
         }
-        .navbar-brand i { font-size: 1.2rem; }
-        .navbar-brand:hover { color: var(--pink-600) !important; }
+        .navbar-brand img { height: 36px; width: auto; }
+        .navbar-brand:hover { opacity: 0.85; }
 
         .nav-link {
             color: var(--text-mid) !important;
@@ -168,8 +164,7 @@
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
             <a class="navbar-brand" href="/dashboard">
-                <i class="ti ti-heart-filled" style="color: var(--pink-500);"></i>
-                HabitFlow
+                <img src="{{ asset('images/HabitTrack.png') }}" alt="HabitTrack">
             </a>
             <button class="navbar-toggler border-0" type="button"
                     data-bs-toggle="collapse" data-bs-target="#navbarNav">

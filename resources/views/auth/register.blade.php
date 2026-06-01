@@ -136,9 +136,9 @@
 <div class="auth-wrapper">
     <div class="auth-card">
 
-        <!-- Icon + Heading -->
-        <div class="auth-icon">
-            <i class="ti ti-user-plus"></i>
+        <!-- Logo -->
+        <div style="text-align:center;margin-bottom:1.25rem;">
+            <img src="{{ asset('images/HabitTrack.png') }}" alt="HabitTrack" style="height:72px;width:auto;">
         </div>
         <h1 class="auth-heading">Create Account</h1>
         <p class="auth-subheading">Start building better habits today</p>

@@ -140,9 +140,9 @@
 <div class="auth-wrapper">
     <div class="auth-card">
 
-        <!-- Icon + Heading -->
-        <div class="auth-icon">
-            <i class="ti ti-lock"></i>
+        <!-- Logo -->
+        <div style="text-align:center;margin-bottom:1.25rem;">
+            <img src="{{ asset('images/HabitTrack.png') }}" alt="HabitTrack" style="height:72px;width:auto;">
         </div>
         <h1 class="auth-heading">Welcome Back</h1>
         <p class="auth-subheading">Sign in to continue your habit journey</p>
