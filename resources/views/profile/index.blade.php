@@ -40,15 +40,15 @@
             <div class="col-4">
                 <div class="card text-center">
                     <div class="card-body">
-                        <div class="fs-2 fw-bold" style="color: #FFB6D9;">{{ $totalHabits }}</div>
-                        <div class="small text-muted">Total Habits</div>
+                        <div class="fs-2 fw-bold" style="color: #ec4899;">{{ $totalHabits }}</div>
+                        <div class="small text-muted">Total</div>
                     </div>
                 </div>
             </div>
             <div class="col-4">
                 <div class="card text-center">
                     <div class="card-body">
-                        <div class="fs-2 fw-bold" style="color: #6BCB77;">{{ $activeHabits }}</div>
+                        <div class="fs-2 fw-bold" style="color: #16a34a;">{{ $activeHabits }}</div>
                         <div class="small text-muted">Active</div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
             <div class="col-4">
                 <div class="card text-center">
                     <div class="card-body">
-                        <div class="fs-2 fw-bold" style="color: #FF6B6B;">{{ $pausedHabits }}</div>
+                        <div class="fs-2 fw-bold" style="color: #9ca3af;">{{ $pausedHabits }}</div>
                         <div class="small text-muted">Paused</div>
                     </div>
                 </div>

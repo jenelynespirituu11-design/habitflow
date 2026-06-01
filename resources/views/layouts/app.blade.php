@@ -32,11 +32,22 @@
         html, body { height: 100%; }
         body {
             font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-            background-color: #fff;
+            background-color: #f9fafb;
             color: var(--text-dark);
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+        }
+
+        /* Consistent page container */
+        .page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.25rem;
+            width: 100%;
+        }
+        @media (max-width: 576px) {
+            .page-container { padding: 1.25rem 1rem; }
         }
 
         /* Push footer to bottom */
@@ -112,22 +123,21 @@
 
         /* ── Buttons (global) ───────────────────── */
         .btn-primary {
-            background: linear-gradient(135deg, var(--pink-400), var(--pink-500));
+            background: #ec4899;
             border: none;
             color: #fff;
             font-weight: 600;
             border-radius: 10px;
-            transition: opacity 0.18s, transform 0.15s, box-shadow 0.18s;
-            box-shadow: 0 3px 12px rgba(255,143,179,0.35);
+            transition: background 0.18s, transform 0.15s, box-shadow 0.18s;
+            box-shadow: 0 2px 8px rgba(236,72,153,0.25);
         }
         .btn-primary:hover {
-            opacity: 0.92;
-            transform: translateY(-1px);
-            box-shadow: 0 6px 18px rgba(255,143,179,0.45);
-            background: linear-gradient(135deg, var(--pink-400), var(--pink-600));
+            background: #db2777;
             border: none;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(236,72,153,0.35);
         }
-        .btn-primary:active { transform: translateY(0); }
+        .btn-primary:active { transform: translateY(0); background: #be185d; }
 
         /* ── Flash alerts ───────────────────────── */
         .flash-success {
@@ -211,7 +221,7 @@
     </nav>
 
     <!-- Flash Messages -->
-    <div class="container mt-3">
+    <div style="max-width:1200px;margin:0 auto;padding:1rem 1.25rem 0;width:100%;">
         @if (session('success'))
             <div class="alert flash-success alert-dismissible fade show" role="alert">
                 <i class="ti ti-circle-check me-2" style="color: #6BCB77;"></i>
@@ -238,7 +248,9 @@
 
     <!-- Page Content -->
     <div class="page-content">
-        @yield('content')
+        <div class="page-container">
+            @yield('content')
+        </div>
     </div>
 
 </div><!-- /page-wrapper -->

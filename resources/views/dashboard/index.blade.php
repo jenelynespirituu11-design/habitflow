@@ -45,7 +45,9 @@
 <div class="card mb-4">
     <div class="card-body">
         <h5 class="card-title" style="color: #4A4A4A;">Weekly Completions</h5>
-        <canvas id="weeklyChart" height="100"></canvas>
+        <div style="position: relative; height: 260px;">
+            <canvas id="weeklyChart"></canvas>
+        </div>
     </div>
 </div>
 
@@ -130,6 +132,7 @@ new Chart(ctx, {
     },
     options: {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: { legend: { display: false } },
         scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
     }

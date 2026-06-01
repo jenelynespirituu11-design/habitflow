@@ -9,9 +9,15 @@
 </div>
 
 @if ($habits->isEmpty())
-    <div class="alert" style="background-color: #FFE5F0; border: 1px solid #FFD6E8; color: #4A4A4A;">
-        No habits yet.
-        <a href="/habits/create" style="color: #FFB6D9;">Create your first habit!</a>
+    <div class="card text-center py-5">
+        <div class="card-body">
+            <div style="font-size: 2.5rem; margin-bottom: .75rem;">🌸</div>
+            <h5 style="color: #4A4A4A;" class="mb-2">No habits yet</h5>
+            <p class="text-muted mb-3">Start building your routine by adding your first habit.</p>
+            <a href="/habits/create" class="btn btn-primary">
+                <i class="ti ti-plus me-1"></i> Create First Habit
+            </a>
+        </div>
     </div>
 @else
     <div class="row g-3">
