@@ -3,7 +3,7 @@
 @push('styles')
 <style>
     .auth-wrapper {
-        min-height: calc(100vh - 130px);
+        min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -72,7 +72,7 @@
     .auth-btn {
         width: 100%;
         height: 50px;
-        background: linear-gradient(135deg, #FFB6D9, #FF8FB3);
+        background: #ec4899;
         border: none;
         border-radius: 12px;
         color: #fff;
@@ -80,13 +80,13 @@
         font-weight: 700;
         letter-spacing: 0.02em;
         cursor: pointer;
-        transition: opacity 0.18s, transform 0.15s, box-shadow 0.18s;
-        box-shadow: 0 4px 16px rgba(255, 143, 179, 0.38);
+        transition: background 0.18s, transform 0.15s, box-shadow 0.18s;
+        box-shadow: 0 4px 16px rgba(236, 72, 153, 0.28);
     }
     .auth-btn:hover {
-        opacity: 0.93;
+        background: #db2777;
         transform: translateY(-2px);
-        box-shadow: 0 8px 24px rgba(255, 143, 179, 0.48);
+        box-shadow: 0 8px 24px rgba(236, 72, 153, 0.38);
     }
     .auth-btn:active { transform: translateY(0); }
 

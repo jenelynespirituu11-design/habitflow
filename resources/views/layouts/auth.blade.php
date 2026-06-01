@@ -28,7 +28,7 @@
         html, body {
             height: 100%;
             font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-            background: linear-gradient(145deg, #FFF0F7 0%, #ffffff 50%, #FFE5F0 100%);
+            background: #fdf2f8;
             color: var(--text-dark);
         }
     </style>
