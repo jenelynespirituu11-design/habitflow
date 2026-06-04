@@ -12,12 +12,12 @@
 
     .auth-card {
         width: 100%;
-        max-width: 360px;
+        max-width: 420px;
         background: #fff;
         border: 1px solid var(--pink-200);
         border-radius: 14px;
         box-shadow: 0 8px 40px rgba(255, 143, 179, 0.14), 0 2px 8px rgba(0,0,0,0.04);
-        padding: 1.75rem 1.75rem;
+        padding: 1.5rem 2rem;
     }
 
     .auth-heading {
@@ -66,8 +66,8 @@
         box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15);
     }
 
-    .auth-group { margin-bottom: 1.25rem; }
-    .auth-group:last-of-type { margin-bottom: 1.75rem; }
+    .auth-group { margin-bottom: 0.85rem; }
+    .auth-group:last-of-type { margin-bottom: 1.25rem; }
 
     .auth-btn {
         width: 100%;
@@ -137,8 +137,8 @@
     <div class="auth-card">
 
         <!-- Logo -->
-        <div style="text-align:center;margin-bottom:1.25rem;">
-            <img src="/images/HabitTrack.png" alt="HabitTrack" style="height:72px;width:auto;">
+        <div style="text-align:center;margin-bottom:0.85rem;">
+            <img src="/images/HabitTrack.png" alt="HabitTrack" style="height:52px;width:auto;">
         </div>
         <h1 class="auth-heading">Create Account</h1>
         <p class="auth-subheading">Start building better habits today</p>
