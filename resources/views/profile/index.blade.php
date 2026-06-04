@@ -6,7 +6,7 @@
 <div class="row g-4">
 
     <!-- Left: Profile Info Card -->
-    <div class="col-12 col-lg-4">
+    <div class="col-12 col-xl-4">
         <div class="card">
             <div class="card-body text-center">
                 <div class="user-avatar mx-auto mb-3"
@@ -45,7 +45,7 @@
     </div>
 
     <!-- Right: Edit Forms -->
-    <div class="col-12 col-lg-8">
+    <div class="col-12 col-xl-8">
 
         <!-- Edit Profile -->
         <div class="card">
@@ -104,7 +104,7 @@
                     @method('PUT')
 
                     <div class="row g-3 mb-4">
-                        <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="col-12">
                             <label class="form-label">Current Password</label>
                             <input type="password" name="current_password"
                                    class="form-control @error('current_password') is-invalid @enderror"
@@ -113,7 +113,7 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="col-12 col-md-6">
                             <label class="form-label">New Password</label>
                             <input type="password" name="password"
                                    class="form-control @error('password') is-invalid @enderror"
@@ -122,7 +122,7 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="col-12 col-md-6">
                             <label class="form-label">Confirm New Password</label>
                             <input type="password" name="password_confirmation"
                                    class="form-control"
