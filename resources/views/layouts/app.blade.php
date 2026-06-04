@@ -293,6 +293,19 @@
                 </ul>
             </div>
 
+            @if (auth()->user()->is_admin)
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Admin</div>
+                <ul class="sidebar-menu">
+                    <li>
+                        <a href="/admin" class="{{ request()->is('admin*') ? 'active' : '' }}">
+                            <i class="ti ti-shield"></i> Admin Panel
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            @endif
+
             <div class="sidebar-bottom">
                 <form action="/logout" method="POST">
                     @csrf

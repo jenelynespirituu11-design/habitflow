@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HabitController;
@@ -33,6 +34,14 @@ Route::middleware('auth')->group(function () {
     Route::put('/habits/{id}',        [HabitController::class, 'update']);
     Route::delete('/habits/{id}',     [HabitController::class, 'destroy']);
     Route::post('/habits/{id}/log',   [HabitController::class, 'log']);
+
+    // Admin
+    Route::middleware('admin')->group(function () {
+        Route::get('/admin',                          [AdminController::class, 'index']);
+        Route::get('/admin/users/{id}/edit',          [AdminController::class, 'edit']);
+        Route::put('/admin/users/{id}',               [AdminController::class, 'update']);
+        Route::delete('/admin/users/{id}',            [AdminController::class, 'destroy']);
+    });
 
     // Profile
     Route::get('/profile',             [ProfileController::class, 'index']);
