@@ -42,10 +42,12 @@ class ProfileController extends Controller
             'profile_picture' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
 
-        // Handle profile picture upload
+        // Handle profile picture upload — store as base64 so it persists on Railway
         if ($request->hasFile('profile_picture')) {
-            $path = $request->file('profile_picture')->store('profiles', 'public');
-            $user->profile_picture = $path;
+            $file     = $request->file('profile_picture');
+            $mime     = $file->getMimeType();
+            $data     = base64_encode(file_get_contents($file->getRealPath()));
+            $user->profile_picture = 'data:' . $mime . ';base64,' . $data;
         }
 
         $user->name  = $request->name;

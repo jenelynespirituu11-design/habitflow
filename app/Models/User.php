@@ -66,10 +66,18 @@ class User extends Authenticatable
 
     public function getProfilePictureUrlAttribute(): string
     {
-        $path = $this->getAttribute('profile_picture');
+        $value = $this->getAttribute('profile_picture');
 
-        return $path
-            ? url('storage/' . $path)
-            : url('images/default-avatar.png');
+        if (!$value) {
+            return '/images/default-avatar.png';
+        }
+
+        // Already a base64 data URL — return as-is
+        if (str_starts_with($value, 'data:')) {
+            return $value;
+        }
+
+        // Legacy storage path
+        return '/storage/' . $value;
     }
 }

@@ -12,7 +12,7 @@
                 <!-- Current picture -->
                 <div class="text-center mb-3">
                     @if ($user->profile_picture)
-                        <img src="{{ asset('storage/' . $user->profile_picture) }}"
+                        <img src="{{ $user->profile_picture_url }}"
                              alt="Profile"
                              class="rounded-circle"
                              style="width: 80px; height: 80px; object-fit: cover;
