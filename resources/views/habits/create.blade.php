@@ -3,6 +3,13 @@
 @section('page-title', 'Create Habit')
 
 @section('content')
+
+<nav style="font-size:13px;margin-bottom:20px;display:flex;align-items:center;gap:6px;color:#bbb;">
+    <a href="/habits" style="color:#FFB6D9;text-decoration:none;font-weight:500;">My Habits</a>
+    <i class="ti ti-chevron-right" style="font-size:12px;"></i>
+    <span style="color:#888;">Add New Habit</span>
+</nav>
+
 <div class="row justify-content-center">
     <div class="col-md-7">
         <div class="card">
