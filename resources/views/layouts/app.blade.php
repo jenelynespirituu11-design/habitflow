@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>HabitFlow</title>
+    <title>HabitTrack</title>
     <link rel="icon" type="image/png" href="/images/HabitTrack.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" rel="stylesheet">
@@ -253,7 +253,10 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-logo">
-            <a href="/dashboard"><img src="/images/HabitTrack.png" alt="HabitFlow"></a>
+            <a href="/dashboard" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+                <img src="/images/HabitTrack.png" alt="HabitTrack">
+                <span style="font-size:18px;font-weight:700;color:#FF8FB3;letter-spacing:-0.02em;">HabitTrack</span>
+            </a>
         </div>
 
         @auth
@@ -304,7 +307,7 @@
 
         @auth
         <div class="page-header">
-            <h1>@yield('page-title', 'HabitFlow')</h1>
+            <h1>@yield('page-title', 'HabitTrack')</h1>
             <div class="d-flex align-items-center gap-3">
                 <div class="user-meta">
                     <div class="user-name">{{ auth()->user()->name }}</div>
