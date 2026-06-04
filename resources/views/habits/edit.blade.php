@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
+@section('page-title', 'Edit Habit')
+
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-7">
-        <div class="card shadow-sm">
-            <div class="card-body p-4">
-                <h2 class="card-title mb-4" style="color: #FFB6D9;">
-                    <i class="ti ti-pencil"></i> Edit Habit
-                </h2>
+        <div class="card">
+            <div class="card-body">
+                <h6 style="font-weight:700;color:#333;margin-bottom:20px;">Edit Habit</h6>
 
                 <form action="/habits/{{ $habit->id }}" method="POST">
                     @csrf

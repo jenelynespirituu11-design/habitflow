@@ -1,75 +1,80 @@
 @extends('layouts.app')
 
+@section('page-title', 'Dashboard')
+
 @section('content')
-<h2 class="mb-4" style="color: #4A4A4A;">
-    Welcome, {{ auth()->user()->name }}! <i class="ti ti-heart" style="color: #FFB6D9;"></i>
-</h2>
 
 <!-- Stat Cards -->
 <div class="row g-3 mb-4">
     <div class="col-6 col-md-3">
-        <div class="card text-center h-100">
+        <div class="card text-center">
             <div class="card-body">
-                <div class="fs-1 fw-bold" style="color: #FFB6D9;">{{ $todayCompleted }}</div>
-                <div class="small text-muted">Today's Completed</div>
+                <div style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;">Today's Completed</div>
+                <div style="font-size:36px;font-weight:700;color:#FFB6D9;">{{ $todayCompleted }}</div>
+                <div style="font-size:12px;color:#ccc;margin-top:4px;">out of active habits</div>
             </div>
         </div>
     </div>
     <div class="col-6 col-md-3">
-        <div class="card text-center h-100">
+        <div class="card text-center">
             <div class="card-body">
-                <div class="fs-1 fw-bold" style="color: #FFB6D9;">{{ $activeHabits }}</div>
-                <div class="small text-muted">Active Habits</div>
+                <div style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;">Active Habits</div>
+                <div style="font-size:36px;font-weight:700;color:#FFB6D9;">{{ $activeHabits }}</div>
+                <div style="font-size:12px;color:#ccc;margin-top:4px;">tracking now</div>
             </div>
         </div>
     </div>
     <div class="col-6 col-md-3">
-        <div class="card text-center h-100">
+        <div class="card text-center">
             <div class="card-body">
-                <div class="fs-1 fw-bold" style="color: #FFB6D9;">{{ $weekCompleted }}</div>
-                <div class="small text-muted">This Week</div>
+                <div style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;">This Week</div>
+                <div style="font-size:36px;font-weight:700;color:#FFB6D9;">{{ $weekCompleted }}</div>
+                <div style="font-size:12px;color:#ccc;margin-top:4px;">completions</div>
             </div>
         </div>
     </div>
     <div class="col-6 col-md-3">
-        <div class="card text-center h-100">
+        <div class="card text-center">
             <div class="card-body">
-                <div class="fs-1 fw-bold" style="color: #FFB6D9;">{{ $currentStreak }}</div>
-                <div class="small text-muted">Day Streak</div>
+                <div style="font-size:11px;color:#bbb;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;">Current Streak</div>
+                <div style="font-size:36px;font-weight:700;color:#FFB6D9;">{{ $currentStreak }}</div>
+                <div style="font-size:12px;color:#ccc;margin-top:4px;">days</div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Weekly Chart -->
+<!-- Chart -->
 <div class="card mb-4">
     <div class="card-body">
-        <h5 class="card-title" style="color: #4A4A4A;">Weekly Completions</h5>
-        <div style="position: relative; height: 260px;">
+        <h6 style="font-weight:700;color:#333;margin-bottom:16px;">Weekly Completions</h6>
+        <div style="position:relative;height:220px;">
             <canvas id="weeklyChart"></canvas>
         </div>
     </div>
 </div>
 
-<!-- Recent Habits Table -->
+<!-- Recent Habits -->
 <div class="card">
-    <div class="card-body">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h5 class="card-title mb-0" style="color: #4A4A4A;">Active Habits</h5>
-            <a href="/habits" class="btn btn-sm btn-primary">View All</a>
+    <div class="card-body" style="padding:0;">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:20px 24px 16px;">
+            <h6 style="font-weight:700;color:#333;margin:0;">Active Habits</h6>
+            <a href="/habits" style="font-size:13px;color:#FFB6D9;text-decoration:none;font-weight:600;">View All →</a>
         </div>
 
         @if ($recentHabits->isEmpty())
-            <p class="text-muted">No active habits yet.
-                <a href="/habits/create" style="color: #FFB6D9;">Create your first habit!</a>
-            </p>
+            <div style="text-align:center;padding:40px;color:#bbb;font-size:14px;">
+                No active habits yet.
+                <a href="/habits/create" style="color:#FFB6D9;font-weight:600;">Create your first habit →</a>
+            </div>
         @else
-            <table class="table table-striped table-hover">
+            <table class="table">
                 <thead>
                     <tr>
                         <th>Habit</th>
                         <th>Category</th>
                         <th>Today</th>
+                        <th>This Week</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -80,28 +85,32 @@
                             ->whereDate('logged_date', today())
                             ->where('completed', true)
                             ->exists();
+                        $weekLogs = \App\Models\HabitLog::where('habit_id', $habit->id)
+                            ->whereBetween('logged_date', [now()->startOfWeek(), now()->endOfWeek()])
+                            ->where('completed', true)
+                            ->count();
                     @endphp
                     <tr>
                         <td>
-                            <i class="ti ti-{{ $habit->icon }}" style="color: {{ $habit->color }};"></i>
-                            {{ $habit->name }}
+                            <span style="font-weight:600;color:#333;">{{ $habit->name }}</span>
                         </td>
                         <td>{{ ucfirst($habit->category ?? '—') }}</td>
                         <td>
                             @if ($logged)
-                                <span style="color: #6BCB77;"><i class="ti ti-circle-check"></i> Done</span>
+                                <span style="color:#6BCB77;font-weight:600;">✓ Done</span>
                             @else
-                                <span style="color: #FF6B6B;"><i class="ti ti-circle-x"></i> Pending</span>
+                                <span style="color:#ddd;">✗ Pending</span>
                             @endif
                         </td>
+                        <td style="color:#888;">{{ $weekLogs }}/{{ $habit->target_days }}</td>
                         <td>
-                            @if (! $logged)
-                                <form action="/habits/{{ $habit->id }}/log" method="POST" class="d-inline">
+                            @if (!$logged)
+                                <form action="/habits/{{ $habit->id }}/log" method="POST" style="display:inline;">
                                     @csrf
-                                    <button type="submit" class="btn btn-sm btn-primary">
-                                        Log
-                                    </button>
+                                    <button type="submit" class="btn btn-primary btn-sm">Log</button>
                                 </form>
+                            @else
+                                <span style="font-size:12px;color:#bbb;">Logged</span>
                             @endif
                         </td>
                     </tr>
@@ -111,6 +120,7 @@
         @endif
     </div>
 </div>
+
 @endsection
 
 @push('scripts')
@@ -122,19 +132,24 @@ new Chart(ctx, {
     data: {
         labels: {!! json_encode($chartData['days']) !!},
         datasets: [{
-            label: 'Habits Completed',
-            data:  {!! json_encode($chartData['completed']) !!},
+            label: 'Completed',
+            data: {!! json_encode($chartData['completed']) !!},
             borderColor: '#FFB6D9',
-            backgroundColor: 'rgba(255,182,217,0.15)',
+            backgroundColor: 'rgba(255,182,217,0.10)',
             tension: 0.4,
-            fill: true
+            fill: true,
+            pointBackgroundColor: '#FFB6D9',
+            pointRadius: 4,
         }]
     },
     options: {
         responsive: true,
         maintainAspectRatio: false,
         plugins: { legend: { display: false } },
-        scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
+        scales: {
+            y: { beginAtZero: true, ticks: { stepSize: 1, color: '#bbb' }, grid: { color: '#FFF0F7' } },
+            x: { ticks: { color: '#bbb' }, grid: { display: false } }
+        }
     }
 });
 </script>

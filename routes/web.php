@@ -35,7 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/habits/{id}/log',   [HabitController::class, 'log']);
 
     // Profile
-    Route::get('/profile',      [ProfileController::class, 'index']);
-    Route::get('/profile/edit', [ProfileController::class, 'edit']);
-    Route::put('/profile',      [ProfileController::class, 'update']);
+    Route::get('/profile',             [ProfileController::class, 'index']);
+    Route::get('/profile/edit',        [ProfileController::class, 'edit']);
+    Route::put('/profile',             [ProfileController::class, 'update']);
+    Route::put('/profile/password',    [ProfileController::class, 'updatePassword']);
 });

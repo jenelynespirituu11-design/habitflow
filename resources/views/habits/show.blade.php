@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('page-title', $habit->name)
+
 @section('content')
 <div class="mb-3">
     <a href="/habits" class="btn btn-outline-secondary btn-sm">
