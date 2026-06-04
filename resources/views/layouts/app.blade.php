@@ -284,15 +284,18 @@
             }
             .main-content {
                 margin-left: 0;
-                padding: 72px 16px 24px;
+                padding: 68px 16px 24px;
             }
             .mobile-topbar { display: flex; }
             .page-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
+                flex-direction: row;
+                align-items: center;
+                margin-bottom: 20px;
+                padding-bottom: 14px;
             }
-            .user-meta { text-align: left; }
+            .page-header h1 { font-size: 18px; }
+            /* Hide user info from header on mobile — topbar handles navigation */
+            .page-header .d-flex.align-items-center.gap-3 { display: none !important; }
         }
         @media (min-width: 769px) {
             .sidebar { transform: none !important; }
