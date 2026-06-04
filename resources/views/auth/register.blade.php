@@ -12,12 +12,12 @@
 
     .auth-card {
         width: 100%;
-        max-width: 450px;
+        max-width: 360px;
         background: #fff;
         border: 1px solid var(--pink-200);
-        border-radius: 18px;
+        border-radius: 14px;
         box-shadow: 0 8px 40px rgba(255, 143, 179, 0.14), 0 2px 8px rgba(0,0,0,0.04);
-        padding: 2.5rem 2.25rem;
+        padding: 1.75rem 1.75rem;
     }
 
     .auth-heading {
