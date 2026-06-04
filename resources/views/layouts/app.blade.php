@@ -239,16 +239,82 @@
         /* ── Progress ─────────────────────────────────────────────── */
         .progress { background-color: #FFE5F0; }
 
+        /* ── Mobile top bar ──────────────────────────────────────────── */
+        .mobile-topbar {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 56px;
+            background: #fff;
+            border-bottom: 1px solid #FFD6E8;
+            z-index: 900;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+        }
+        .mobile-topbar a {
+            display: flex; align-items: center; gap: 8px; text-decoration: none;
+        }
+        .mobile-topbar img { height: 28px; width: auto; }
+        .mobile-topbar span {
+            font-size: 16px; font-weight: 700; color: #FF8FB3; letter-spacing: -0.02em;
+        }
+        .hamburger {
+            background: none; border: none; cursor: pointer;
+            padding: 6px; color: #888; font-size: 22px; line-height: 1;
+        }
+
+        /* ── Sidebar overlay backdrop ────────────────────────────────── */
+        .sidebar-backdrop {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.35);
+            z-index: 999;
+        }
+        body.sidebar-open .sidebar-backdrop { display: block; }
+        body.sidebar-open .sidebar { transform: translateX(0); }
+
         /* ── Responsive ───────────────────────────────────────────── */
         @media (max-width: 768px) {
-            .sidebar { width: 100%; height: auto; position: relative; flex-direction: row; flex-wrap: wrap; padding: 16px 0; }
-            .main-content { margin-left: 0; padding: 20px; }
-            .page-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .sidebar {
+                transform: translateX(-260px);
+                transition: transform 0.25s ease;
+                z-index: 1000;
+                box-shadow: 4px 0 20px rgba(0,0,0,0.08);
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 72px 16px 24px;
+            }
+            .mobile-topbar { display: flex; }
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .user-meta { text-align: left; }
+        }
+        @media (min-width: 769px) {
+            .sidebar { transform: none !important; }
         }
     </style>
     @stack('styles')
 </head>
 <body>
+
+    <!-- Mobile top bar -->
+    <div class="mobile-topbar">
+        <a href="/dashboard">
+            <img src="/images/HabitTrack.png" alt="HabitTrack">
+            <span>HabitTrack</span>
+        </a>
+        <button class="hamburger" id="sidebarToggle" aria-label="Open menu">
+            <i class="ti ti-menu-2"></i>
+        </button>
+    </div>
+
+    <!-- Sidebar backdrop (mobile) -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
     <!-- Sidebar -->
     <div class="sidebar">
@@ -362,6 +428,18 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const toggle   = document.getElementById('sidebarToggle');
+        const backdrop = document.getElementById('sidebarBackdrop');
+        function openSidebar()  { document.body.classList.add('sidebar-open'); }
+        function closeSidebar() { document.body.classList.remove('sidebar-open'); }
+        if (toggle)   toggle.addEventListener('click', openSidebar);
+        if (backdrop) backdrop.addEventListener('click', closeSidebar);
+        // Close sidebar when a nav link is tapped on mobile
+        document.querySelectorAll('.sidebar-menu a, .sidebar-bottom button').forEach(el => {
+            el.addEventListener('click', closeSidebar);
+        });
+    </script>
     @stack('scripts')
 </body>
 </html>
