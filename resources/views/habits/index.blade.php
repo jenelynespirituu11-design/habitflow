@@ -14,7 +14,6 @@
 @if ($habits->isEmpty())
     <div class="card">
         <div class="card-body text-center" style="padding:60px 24px;">
-            <div style="font-size:2.5rem;margin-bottom:12px;">🌸</div>
             <h6 style="color:#333;margin-bottom:8px;">No habits yet</h6>
             <p style="color:#bbb;font-size:14px;margin-bottom:20px;">Start building your routine by adding your first habit.</p>
             <a href="/habits/create" class="btn btn-primary">Create First Habit</a>

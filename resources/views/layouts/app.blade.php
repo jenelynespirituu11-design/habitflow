@@ -32,7 +32,7 @@
         }
 
         .sidebar-logo {
-            padding: 0 24px;
+            padding: 0 16px;
             margin-bottom: 32px;
         }
         .sidebar-logo img { height: 38px; width: auto; }
@@ -44,7 +44,7 @@
             font-weight: 700;
             color: #bbb;
             text-transform: uppercase;
-            padding: 0 24px;
+            padding: 0 16px;
             margin-bottom: 6px;
             letter-spacing: 0.8px;
         }
@@ -54,7 +54,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            padding: 10px 24px;
+            padding: 10px 16px;
             color: #555;
             text-decoration: none;
             font-size: 14px;
@@ -76,7 +76,7 @@
 
         .sidebar-bottom {
             margin-top: auto;
-            padding: 0 16px;
+            padding: 0 12px;
         }
         .sidebar-bottom form { margin: 0; }
         .sidebar-bottom button {
